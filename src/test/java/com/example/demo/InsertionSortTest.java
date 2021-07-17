@@ -33,8 +33,34 @@ public class InsertionSortTest {
     }
 
     @Test
-    public void insertionSorting(){
-        int[] unsortedArray = GenerateArrayUtils.generateRandomIntArray(100, 1, 100);
+    public void sortRandomIntArray(){
+        int[] unsortedArray = GenerateArrayUtils.getRandomIntArray(100, 1, 100);
+        int[] expectedSortedArray = Arrays.stream(unsortedArray).sorted().toArray();
+
+        System.out.println("Unsorted array: " + Arrays.toString(unsortedArray));
+        System.out.println("Expected sorted array: " + Arrays.toString(expectedSortedArray));
+
+        insertionSort(unsortedArray);
+
+        Assertions.assertArrayEquals(expectedSortedArray, unsortedArray);
+    }
+
+    @Test
+    public void sortSameIntArray(){
+        int[] unsortedArray = GenerateArrayUtils.getSameIntArray(100);
+        int[] expectedSortedArray = Arrays.stream(unsortedArray).sorted().toArray();
+
+        System.out.println("Unsorted array: " + Arrays.toString(unsortedArray));
+        System.out.println("Expected sorted array: " + Arrays.toString(expectedSortedArray));
+
+        insertionSort(unsortedArray);
+
+        Assertions.assertArrayEquals(expectedSortedArray, unsortedArray);
+    }
+
+    @Test
+    public void sortSequentialIntArray(){
+        int[] unsortedArray = GenerateArrayUtils.getSequentialIntArray(100);
         int[] expectedSortedArray = Arrays.stream(unsortedArray).sorted().toArray();
 
         System.out.println("Unsorted array: " + Arrays.toString(unsortedArray));

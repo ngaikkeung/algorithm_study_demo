@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 
 public class InsertionSortTest {
+    private static final int SIZE = 10000;
 
     /**
      * Insertion sorting implement
@@ -34,7 +35,7 @@ public class InsertionSortTest {
 
     @Test
     public void sortRandomIntArray(){
-        int[] unsortedArray = GenerateArrayUtils.getRandomIntArray(100, 1, 100);
+        int[] unsortedArray = GeneralUtils.getRandomIntArray(SIZE, 1, 100);
         int[] expectedSortedArray = Arrays.stream(unsortedArray).sorted().toArray();
 
         System.out.println("Unsorted array: " + Arrays.toString(unsortedArray));
@@ -47,7 +48,7 @@ public class InsertionSortTest {
 
     @Test
     public void sortSameIntArray(){
-        int[] unsortedArray = GenerateArrayUtils.getSameIntArray(100);
+        int[] unsortedArray = GeneralUtils.getSameIntArray(SIZE);
         int[] expectedSortedArray = Arrays.stream(unsortedArray).sorted().toArray();
 
         System.out.println("Unsorted array: " + Arrays.toString(unsortedArray));
@@ -60,7 +61,20 @@ public class InsertionSortTest {
 
     @Test
     public void sortSequentialIntArray(){
-        int[] unsortedArray = GenerateArrayUtils.getSequentialIntArray(100);
+        int[] unsortedArray = GeneralUtils.getSequentialIntArray(SIZE);
+        int[] expectedSortedArray = Arrays.stream(unsortedArray).sorted().toArray();
+
+        System.out.println("Unsorted array: " + Arrays.toString(unsortedArray));
+        System.out.println("Expected sorted array: " + Arrays.toString(expectedSortedArray));
+
+        insertionSort(unsortedArray);
+
+        Assertions.assertArrayEquals(expectedSortedArray, unsortedArray);
+    }
+
+    @Test
+    public void sortReversedIntArray(){
+        int[] unsortedArray = GeneralUtils.getReversedIntArray(SIZE);
         int[] expectedSortedArray = Arrays.stream(unsortedArray).sorted().toArray();
 
         System.out.println("Unsorted array: " + Arrays.toString(unsortedArray));

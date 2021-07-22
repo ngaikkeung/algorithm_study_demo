@@ -50,9 +50,8 @@ public class QuickSortTest {
         // End of loop through the array, the pivot itself is last index of the element which is less than pivot
         // In the worse case, all of other element are grater than pivot, the frontSortedIndex is -1, it needs to swap the pivot to first element
         frontSortedIndex++;
-        int temp = array[frontSortedIndex];
-        array[frontSortedIndex] = array[end];
-        array[end] = temp;
+        array[end] = array[frontSortedIndex];
+        array[frontSortedIndex] = pivot;
 
         return frontSortedIndex;
     }

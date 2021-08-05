@@ -1,6 +1,6 @@
-##Data Structure & algorithm demo via Spring boot
+## Data Structure & algorithm demo via Spring boot
 
-###Sorting algorithm implementation
+### Sorting algorithm implementation
 * Bubble sort
 * Insertion sort
 * Quick sort
@@ -8,5 +8,5 @@
 * Quick sort
 * Merge sort
 
-###Data structure implementation
+### Data structure implementation
 * Linked list

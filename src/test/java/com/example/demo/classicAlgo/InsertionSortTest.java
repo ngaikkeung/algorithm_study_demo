@@ -1,6 +1,7 @@
-package com.example.demo;
+package com.example.demo.classicAlgo;
 
 
+import com.example.demo.GeneralUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;

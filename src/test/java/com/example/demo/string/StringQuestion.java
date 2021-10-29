@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 public class StringQuestion {
 
     /**
+     * Question: 1.1
      * Is Unique: Implement an algorithm to determine if a string has all unique characters.
      * What if you cannot use additional data structures?
-     * Hints: #44, #17, #132
+     * Related: #44, #17, #132
      * <p>
      * Assumption: Characters in string are ASCII not unicode.
      */
@@ -66,5 +67,65 @@ public class StringQuestion {
             }
         }
         return true;
+    }
+
+    /**
+     * Question: 1.2
+     * Check Permutation: Given two strings,write a method to decide if one is a permutation of the
+     * other
+     * Related: #7, #84, #722, #737
+     * <p>
+     * Assumption: Case insensitive.
+     */
+    @Test
+    public void isPermutation() {
+        String[] permutationStringsA = {"abc", "cba"};
+        String[] permutationStringsB = {"AabC", "Baca"};
+        String[] permutationStringsC = {"AbCdef", "cbadef"};
+        String[] NonPermutationStringsA = {"abcde", "cba"};
+        String[] NonPermutationStringsB = {"SDF", "cba"};
+        String[] NonPermutationStringsC = {"AbCdef", "cbadefA"};
+
+
+        Assertions.assertTrue(isPermutation(permutationStringsA[0], permutationStringsA[1]));
+        Assertions.assertTrue(isPermutation(permutationStringsB[0], permutationStringsB[1]));
+        Assertions.assertTrue(isPermutation(permutationStringsC[0], permutationStringsC[1]));
+        Assertions.assertFalse(isPermutation(NonPermutationStringsA[0], NonPermutationStringsA[1]));
+        Assertions.assertFalse(isPermutation(NonPermutationStringsB[0], NonPermutationStringsB[1]));
+        Assertions.assertFalse(isPermutation(NonPermutationStringsC[0], NonPermutationStringsC[1]));
+    }
+
+    /**
+     * Time complexity: O(N)
+     * Space complexity: O(1) -> fix size of space for the counting array
+     *
+     * @param firstStr  first string to check
+     * @param secondStr second string to check
+     * @return true if one string is a permutation of the other string, otherwise return false
+     */
+    private boolean isPermutation(String firstStr, String secondStr) {
+        int[] flag = new int[26];
+        boolean isPermutation = true;
+
+        firstStr = firstStr.toLowerCase();
+        secondStr = secondStr.toLowerCase();
+
+        for (Character c : firstStr.toCharArray()) {
+            flag[c - 'a'] = ++flag[c - 'a'];
+        }
+        for (Character c : secondStr.toCharArray()) {
+            flag[c - 'a'] = --flag[c - 'a'];
+        }
+
+        for (int count : flag) {
+            if (count < 0 || count % 2 == 1) {
+                if (!isPermutation) {
+                    return false;
+                }
+                isPermutation = false;
+            }
+        }
+
+        return isPermutation;
     }
 }
